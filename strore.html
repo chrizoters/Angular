@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app='store'>
+<head>
+    <link href="style/bootstrap.css" rel="stylesheet" />
+  <script src="Script/angular.js"></script>
+    
+    <script type="text/javascript">
+        var app = angular.module('store',[]);
+          
+        app.controller('StoreController',function(){
+            this.product = gem;
+            });
+        
+            var gem = { "name" : 'Gem 1', "price": 2.31,"description" :'Description'}
+           
+            
+            
+            app.controller('testCtrl',function($scope){
+                this.Name = "prem";
+                this.do = true;
+                
+                $scope.muteToggle = function() {
+                        this.do = !this.do;
+                };
+  
+            });
+            
+                
+    </script>
+</head>
+
+<body>
+    
+    <div ng-controller="StoreController as store">
+        <h1>{{store.product.name}}</h1>
+        <h2>{{store.product.price}}</h2>
+        <p>{{store.product.description}}</p>
+    </div>
+    
+    <div ng-controller="testCtrl as test">
+            <div>{{test.Name}}</div>
+          <div>{{test.do}}</div>
+        <input type="button" ng-show="!test.do" value="show" ng-click="muteToggle()"/>
+         <input type="button" ng-show="test.do" value="hide" ng-click="muteToggle()"/>
+    </div>
+    
+    
+
+</body>
+</html>

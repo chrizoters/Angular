@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <link href="style/bootstrap.css" rel="stylesheet" />
+    
+  <script src="Script/angular.js"></script>
+    
+    <script type="text/javascript">
+        //Golbal decleration
+     var MyApp = angular.module('MyApp',[]);        // ( application name , arguments )
+       
+        MyApp.controller('TestCtrl',function ($scope){       //dsds
+            $scope.Countries=[
+                {"name":"China","Population": 132456},
+                {"name":"India","Population": 23456},
+                { "name":"USA","Population": 3654323},
+                { "name":"japan","Population": 58455}
+            ];
+            
+            $scope.sortField = 'Population';
+            $scope.reverse=true;
+        });
+        
+        
+        
+//another module     
+        
+var notebooks = angular.module('notebooks', []);
+notebooks.controller('NotebookListCtrl', function($scope) {
+  $scope.notebooks = [
+    {"name": "Lenovo",
+     "procesor": "Intel i5",
+     "age": 2011},
+    {"name": "Toshiba",
+     "procesor": "Intel i7",
+     "age": 2010},
+    {"name": "Toshiba",
+     "procesor": "Intel core 2 duo",
+     "age": 2008},
+    {"name": "HP",
+     "procesor": "Intel core 2 duo",
+     "age": 2012},
+    {"name": "Acer",
+     "procesor": "AMD",
+     "age": 2006},
+    {"name": "Lenovo",
+     "procesor": "Intel i5",
+     "age": 2009},
+    {"name": "Toshiba",
+     "procesor": "Intel i7",
+     "age": 2008},
+    {"name": "Lenovo",
+     "procesor": "Intel i5",
+     "age": 2011},
+    {"name": "Toshiba",
+     "procesor": "Intel i7",
+     "age": 2010},
+    {"name": "Toshiba",
+     "procesor": "Intel core 2 duo",
+     "age": 2008},
+    {"name": "HP",
+     "procesor": "Intel core 2 duo",
+     "age": 2012},
+    {"name": "Acer",
+     "procesor": "AMD",
+     "age": 2006},
+    {"name": "Lenovo",
+     "procesor": "Intel i5",
+     "age": 2009},
+    {"name": "Toshiba",
+     "procesor": "Intel i7",
+     "age": 2008},
+    {"name": "Lenovo",
+     "procesor": "Intel i5",
+     "age": 2011},
+    {"name": "Toshiba",
+     "procesor": "Intel i7",
+     "age": 2010},
+    {"name": "Toshiba",
+     "procesor": "Intel core 2 duo",
+     "age": 2008},
+    {"name": "HP",
+     "procesor": "Intel core 2 duo",
+     "age": 2012},
+    {"name": "Acer",
+     "procesor": "AMD",
+     "age": 2006},
+    {"name": "Lenovo",
+     "procesor": "Intel i5",
+     "age": 2009},
+    {"name": "Toshiba",
+     "procesor": "Intel i7",
+     "age": 2008}
+  ];
+  $scope.orderList = "name";
+});
+        
+ 
+    </script>
+    
+</head>
+
+<body ng-controller="TestCtrl">
+    
+    search:<input type="text" ng-model="query"/>
+    <table>
+        <tr>
+            <th>  Country  </th> 
+            <th>  population</th>
+         </tr>
+        <tr ng-repeat="country in Countries | filter:query | orderBy:'Population'">
+            <td>{{country.name}}</td><td>{{country.Population}}</td>
+        </tr>
+        
+        
+    </table>
+    
+    <br>--------- <br>
+    <br>
+    <br>
+    Sort functionality <br>
+    search:<input type="text" ng-model="query"/>
+    <table>
+        <tr>
+            <th> <a href="" ng-click="sortField = 'name'; reverse=!reverse"> Country </a> </th> 
+            <th> <a href="" ng-click="sortField = 'Population';  reverse=!reverse">population</a> </th>
+         </tr>
+        <tr ng-repeat="country in Countries | filter:query | orderBy:sortField:reverse">
+            <td>{{country.name}}</td><td>{{country.Population}}</td>
+        
+        </tr>
+        
+        
+    </table>
+</div>
+</body>

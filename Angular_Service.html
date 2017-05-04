@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="style/bootstrap.css" rel="stylesheet" />
+  <script src="Script/angular.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    {{Title}}
+    <br>
+    {{hex}}
+    {{hex}}
+    <br>
+    {{test}}
+    <br>
+    {{test2}}
+    
+</div>
+</body>
+
+   
+<script>
+        var app = angular.module('myApp', []);
+
+        app.service('hexafy', function() {
+            this.myFunc = function (x) {
+                return x.toString(18);
+            }
+        
+            
+        });
+    
+       app.service('testserv', function() {
+            this.test =function(x){
+                    return x;
+            }
+            
+            this.test2 =function(x){
+                    return x;
+            }
+        });
+    
+    
+    //To use your custom made service, add it as a dependency when defining the filter:
+        app.controller('myCtrl', function($scope, hexafy,testserv) {
+            $scope.hex = hexafy.myFunc(255);
+            $scope.Title = "Angular Service Example";
+            $scope.test = testserv.test(255);
+             $scope.test2 = testserv.test2(26);
+            
+        });
+    
+    
+  /*  app.what ('itsName',function (dependencys){
+        
+    })*/
+</script>
+
+</html>
+ 
+

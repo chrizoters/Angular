@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="style/bootstrap.css" rel="stylesheet" />
+    
+  <script src="Script/angular.js"></script>
+    
+    <script type="text/javascript">
+    </script>
+</head>
+
+<body ng-app ng-init="firstName = 'John'; lastName = 'Doe';">
+    
+    
+  <strong>First name:</strong> {{firstName | uppercase}}<br />
+  <strong>Last name:</strong> <span ng-bind="lastName"></span><br />
+  <br />
+  <label>Set the first name: <input type="text" ng-model="firstName"/></label><br />
+  <label>Set the last name: <input type="text" ng-model="lastName"/></label>
+    
+    
+    
+</div>
+</body>
+</html>

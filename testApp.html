@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <link href="bootstrap.css" rel="stylesheet" />
+    
+  <script src="angular.js"></script>
+    
+    
+    
+    <script type="text/javascript">
+        //Golbal decleration
+     var MyApp = angular.module('MyApp',[]);        // ( application name , arguments )
+       
+        MyApp.controller('TestCtrl',function ($scope){       //dsds
+            alert("Loaded");
+            
+            $scope.firstName = '';
+            $scope.lastName = 'smith';
+            $scope.frnz =['sji','lji','bji'];
+            
+            $scope.addfrnd = function(){
+                $scope.frnz.push($scope.EnteredFrnd);
+                $scope.EnteredFrnd='';
+            }
+            
+            $scope.removeFrnd = function(name)
+            {
+            var i = $scope.frnz.indexOf(name);
+                $scope.frnz.splice(i,1);
+            }
+            
+            $scope.Countries=[
+                {"name":"China","Population": 123456},
+                {"name":"India","Population": 124326},
+                { "name":"USA","Population": 12433456}
+            ];
+        });
+    </script>
+    
+</head>
+
+<body ng-controller="TestCtrl">
+    
+    
+  <strong>First name:</strong> {{firstName}}<br />
+  <strong>Last name:</strong> <span ng-bind="lastName"></span><br />
+  <br />
+  <label>Set the first name: <input type="text" ng-model="firstName"/></label><br />
+  <label>Set the last name: <input type="text" ng-model="lastName"/></label>
+
+    <ul>
+        <li ng-repeat="frnd in frnz">{{ frnd }}
+           <a href='' ng-click="removeFrnd(frnd)"> remove</a>
+        </li>
+     
+    </ul>
+    
+    <form ng-submit="addfrnd()">
+    <input type="text" ng-model="EnteredFrnd"/>
+     <input type="submit" value="add"/>
+    </form>
+    
+    
+      <ul>
+        <li ng-repeat="country in Countries">{{ country.name }} - population{{country.Population}}
+        </li>
+    </ul>
+    
+    
+    
+    <table>
+        <tr>
+            <th>  Country  </th> 
+            <th>  population</th>
+         </tr>
+        <tr ng-repeat="country in Countries">
+            <td>{{country.name}}</td><td>{{country.Population}}</td>
+        
+        </tr>
+        
+        
+    </table>
+</div>
+</body>
+</html>

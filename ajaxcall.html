@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <link href="bootstrap.css" rel="stylesheet" />
+    
+  <script src="angular.js"></script>
+    
+    <script type="text/javascript">
+        var Contries=[
+                {"name":"China","Population": 132456},
+                {"name":"India","Population": 23456},
+                { "name":"USA","Population": 3654323},
+                { "name":"japan","Population": 58455}
+            ];
+        
+        
+        
+        //Golbal decleration
+     var MyApp = angular.module('MyApp',[]);        // ( application name , arguments )
+       
+        MyApp.controller('TestCtrl',function ($scope,$http){       //dsds
+           $http.get('Contries.json').success(function(data)){
+            $scope.Countries = data;                                  
+            }
+            
+            $scope.sortField = 'Population';
+            $scope.reverse=true;
+        });
+        
+        
+ 
+    </script>
+    
+</head>
+
+<body ng-controller="TestCtrl">
+
+    
+    search:<input type="text" ng-model="query"/>
+    <table>
+        <tr>
+            <th> <a href="" ng-click="sortField = 'name'; reverse=!reverse"> Country </a> </th> 
+            <th> <a href="" ng-click="sortField = 'Population';  reverse=!reverse">population</a> </th>
+         </tr>
+        <tr ng-repeat="country in Countries | filter:query | orderBy:sortField:reverse">
+            <td>{{country.name}}</td><td>{{country.Population}}</td>
+        
+        </tr>
+        
+        
+    </table>
+</div>
+</body>

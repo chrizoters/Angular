@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="style/bootstrap.css" rel="stylesheet" />
+  <script src="Script/angular.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+   Multiple controllers
+    
+    <br>
+     <br>
+     <br>
+
+    <div  ng-controller="myCntrl">{{title}}</div>
+    
+    
+    <div  ng-controller="myCntrl_A">{{title}}</div>
+</div>
+</body>
+
+   
+<script>
+ var app = angular.module('myApp', []);
+
+    
+    app.controller('myCntrl',function($scope){
+        $scope.title = "Controller 1";   
+    });
+    
+    app.controller('myCntrl_A',function($scope){
+               $scope.title = "Controller A";   
+    });
+    
+    
+    app.service('myService', function(){
+        this.myFunction = function(){
+            return "data From Service 1"
+        }
+    });
+    
+  /*  app.what ('itsName',function (dependencys){
+        
+    });*/
+</script>
+
+</html>
+ 
+

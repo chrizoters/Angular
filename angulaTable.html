@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div   class="container" ng-app="myApp" ng-controller="customersCtrl">
+
+
+  <div class="alert alert-info">
+    <p>Sort Type: {{ sortType }}</p>
+    <p>Sort Reverse: {{ sortReverse }}</p>
+    <p>Search Query: {{ Name }}</p>
+	 <a href="#" ng-click="sortReverse = !sortReverse"> asc </a>
+  </div>
+  
+  
+    <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search names" ng-model="Name">
+
+      </div>      
+    </div>
+  </form>
+  
+  
+  
+<table class="table-responsive table-bordered table-striped table-hover table-condensed">
+    <thead>
+      <tr>
+	    <td>s</td>
+	      <td>
+		    <a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">
+					Name 
+			 <span ng-show="sortType == 'Name'  && sortReverse == true " class="fa fa-caret-down"></span>
+			 
+			  <span ng-show="sortType == 'Name'  && sortReverse == false " class="fa fa-caret-up"></span>
+          </a>
+        </td>
+		
+		  <td>
+		    <a href="#" ng-click="sortType = 'Score' ; sortReverse = !sortReverse">
+					Score 
+			 <span ng-show="sortType == 'Score' && sortReverse == true" class="fa fa-caret-down"></span>
+			  <span ng-show="sortType == 'Score' && sortReverse == false" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+		    <a href="#" ng-click="sortType = 'AuditType' ; sortReverse = !sortReverse">
+					AuditType 
+			 <span ng-show="sortType == 'AuditType' && sortReverse == true"" class="fa fa-caret-down"></span>
+			 <span ng-show="sortType == 'AuditType' && sortReverse == false"" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+		  <a href="#" ng-click="sortType = 'Description' ; sortReverse = !sortReverse">
+          Description 
+		    <span ng-show="sortType == 'Description' && sortReverse == true" class="fa fa-caret-down"></span>
+			 <span ng-show="sortType == 'Description' && sortReverse == false" class="fa fa-caret-up"></span>
+			</a>
+        </td> 
+		
+      </tr>
+    </thead>
+    
+  <tr ng-repeat="x in data  | orderBy:sortType:sortReverse | filter:Name">
+    <td>{{$index}}</td>
+   <td>{{ x.Name}}</td>
+     <td>{{ x.Score}}</td>
+    <td>{{ x.AuditType}}</td>
+    <td>{{ x.Description}}</td>
+
+	
+  </tr>
+</table>
+
+<at-pagination at-list="filteredList" at-config="config"></at-pagination>
+
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("http://provideranalytics.healthicity.com/api/providers")
+    .then(function (response) {$scope.data = response.data;});
+	
+	$scope.sortType     = 'Score'; // set the default sort type
+  $scope.sortReverse  = true;  // set the default sort order
+  $scope.Name   = '';     // set the default search/filter term
+  
+  
+});
+</script>
+
+</body>
+</html>
+

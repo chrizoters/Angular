@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <link href="style/bootstrap.css" rel="stylesheet" />
+    
+  <script src="Script/angular.js"></script>
+    
+    
+    
+    <script type="text/javascript">
+        //Golbal decleration
+     var MyApp = angular.module('MyApp',[]);        // ( application name , arguments )
+       
+        MyApp.controller('TestCtrl',function ($scope){       //dsds
+            alert("Loaded");
+            
+            $scope.firstName = 'fds';
+        
+            
+            $scope.removeFrnd = function(name)
+            {
+            var i = $scope.frnz.indexOf(name);
+                $scope.frnz.splice(i,1);
+            }
+            
+            $scope.Countries=[
+                {"name":"China","Population": 123456},
+                {"name":"India","Population": 124326},
+                { "name":"USA","Population": 12433456}
+            ];
+            
+            
+            $scope.templates = [{
+                                        name: 'template1.html',
+                                        url: 'template1.html'},
+                                {
+                                        name: 'template2.html',
+                                        url: 'template2.html'
+                                }];
+            
+           $scope.template = $scope.templates[1];
+
+    $scope.myFunction = function() {
+        $scope.color = 'red';
+    }
+        });
+        
+        
+        
+        MyApp.controller("myCtrl", function($scope) {  
+            $scope.firstName = "Pradeep";  
+            $scope.lastName= "K";  
+        });
+        
+    </script>
+    
+</head>
+
+<body ng-controller="TestCtrl">
+     <div ng-include="'/PartialViews/HeadTemp.html'"></div>
+   <div >
+       
+    <select ng-model="template" ng-options="t.name for t in templates">
+     <option value="">(blank)</option>
+    </select>
+    
+    
+    
+    <hr/>
+    <div ng-include src="template.url"></div>
+<!--  <ng-include src="'template1.html'"></ng-include>-->
+ </div> 
+    
+    
+    
+    
+    
+    
+    <!-- template1.html -->
+<script type="text/ng-template" id="template1.html">
+ 
+<h1>template 1 </h1>
+   
+</script>
+ 
+<!-- template2.html -->
+<script type="text/ng-template" id="template2.html">
+<h2>template 2 </h2>
+<!--    <div ng-include="'/PartialViews/HeadTemp.html'"></div>-->
+</script>
+  
+    
+    
+    
+      <div ng-include="'/footer.html'"></div>
+
+</body>
+</html>
